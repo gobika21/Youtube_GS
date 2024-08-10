@@ -1,3 +1,4 @@
+import time
 import mysql.connector
 import streamlit as st
 
@@ -39,9 +40,13 @@ def insert_comment_detail(commentDetail_list):
             try:
                 cursor.execute(insert_comment_query, data)
             except mysql.connector.Error as err:
-                st.write(f"Insert query failed for comment_id {comment['Comment_Id']}: {err}")
+                msg = st.error(f"Comment Insert query failed for comment_id {comment['Comment_Id']}: {err}")
+                time.sleep(5)
+                msg.empty()
 
     mydb.commit()
-    st.write("Data insertion process completed.")
+    msg = st.success("Comment Data insertion process completed.")
+    time.sleep(5)
+    msg.empty()
     cursor.close()
     mydb.close()

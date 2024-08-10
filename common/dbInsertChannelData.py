@@ -1,3 +1,4 @@
+import time
 import mysql.connector
 import streamlit as st
 
@@ -58,12 +59,18 @@ def insert_channel_detail(item):
 
         # Check number of affected rows
         if cursor.rowcount > 0:
-            st.write("Channel data insert was successful.")
+            msg = st.success("Channel data insert was successful.")
+            time.sleep(5)
+            msg.empty()
         else:
-            st.write("No rows were affected, record might be a duplicate.")
+            msg = st.warning("No rows were affected, channel Id might be a duplicate.")
+            time.sleep(5)
+            msg.empty()
     except Exception as e:
         mydb.rollback()  # Rollback the transaction if there's an error
-        st.write(f"Insert query failed: {e}")
+        msg = st.error(f"Channel data Insert query failed: {e}")
+        time.sleep(5)
+        msg.empty()
     finally:
         cursor.close()
         mydb.close()

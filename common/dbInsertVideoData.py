@@ -1,3 +1,4 @@
+import time
 import mysql.connector
 import streamlit as st
 
@@ -54,10 +55,14 @@ def insert_video_detail(item):
                 cursor.execute(insert_video_query, data)
         
         mydb.commit()
-        st.write("Data insertion process completed.")
+        msg = st.success("Video Data insertion process completed.")
+        time.sleep(5)
+        msg.empty()
     except mysql.connector.Error as err:
-        st.write(f"Insert query failed: {err}")
-        mydb.rollback()  # Rollback the transaction if there's an error
+        msg = st.error(f"Video Insert query failed: {err}")
+        time.sleep(5)
+        msg.empty()
+        mydb.rollback()
     finally:
         cursor.close()
         mydb.close()

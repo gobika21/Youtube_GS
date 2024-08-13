@@ -13,7 +13,7 @@ def insert_comment_detail(commentDetail_list):
         host="localhost",
         user="root",
         password="12345678",
-        database="Youtube"
+        database="A1_youtube"
     )
     cursor = mydb.cursor()
 

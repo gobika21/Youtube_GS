@@ -22,7 +22,7 @@ def showQuestion():
         host="localhost",
         user="root",
         password="12345678",
-        database="Youtube"
+        database="A1_youtube"
     )
     cursor = db_connection.cursor()
 

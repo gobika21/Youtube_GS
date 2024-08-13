@@ -22,7 +22,6 @@ def get_video_comments(videoId_list):
                     Comment_PublishedAt = change_date_format(item['snippet']['topLevelComment']['snippet']['publishedAt'])
                 )
                 commentDetail_list.append(data)
-                st.write("The current commentDetail_list comment is", commentDetail_list)
     except:
         pass
     return commentDetail_list
